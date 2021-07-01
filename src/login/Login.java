@@ -6,6 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import JDBCInfo.Member;
+import JDBCInfo.MemberDao;
+import JDBCInfo.MemberDaoImpl;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -71,14 +76,22 @@ public class Login extends JFrame {
 		lblLoginBanner.setBounds(72, 46, 260, 18);
 		contentPane.add(lblLoginBanner);
 		
-		JButton btnStart = new JButton("시작하기"); //데이터베이스에 회원 정보를 넘겨주어야 한다. 
-		btnStart.addActionListener(new ActionListener() {
+		JButton btnSave = new JButton("가입완료"); //데이터베이스에 회원 정보를 넘겨주어야 한다. 
+		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
+				MemberDao memberDao = new MemberDaoImpl();
+				//테이블 생성
+				memberDao.createMember();
+				memberDao.insertMember(new Member(txtNickName.getText(), txtRegion.getText(), txtBirthDay.getText()));
+				 //Member member =  memberDao.getMemberByRegion("동작구");
+				//System.out.println("해당 구에 거주하는 유저의 닉네임은 : " +member.getNickName());
 			}
 		});
-		btnStart.setBounds(150, 349, 105, 27);
-		contentPane.add(btnStart);
+		btnSave.setBounds(72, 349, 105, 27);
+		contentPane.add(btnSave);
+		
+		JButton btnChatStart = new JButton("채팅 시작하기");
+		btnChatStart.setBounds(191, 349, 141, 27);
+		contentPane.add(btnChatStart);
 	}
 }
