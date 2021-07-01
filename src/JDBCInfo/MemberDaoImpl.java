@@ -102,11 +102,19 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public void createMember() {
 		Connection conn = null;
+		ResultSet rs1;
 		try {
 			conn = DriverManager.getConnection(DB_URL,"hr","hr");
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("drop table member");
-			stmt.executeUpdate("create table member (nickname varchar(15), region varchar(10), birthday char(8))");
+			//stmt.executeUpdate("drop table member");
+			
+			String checkSql = "select count(*) from all_tables where table_name = 'member'";			
+			rs1 = stmt.executeQuery(checkSql);
+			if(!rs1.next()) {
+				String sql = "create table member (nickname varchar(15), region varchar(10), birthday char(8))";
+				stmt.executeUpdate(sql);
+				stmt.close();
+			}			
 			//닉네임, 지역, 생년월일을 컬럼으로 하는 member 테이블을 만든다.
 			stmt.close();
 		}catch(SQLException e) {
@@ -120,7 +128,6 @@ public class MemberDaoImpl implements MemberDao{
 				}
 			}
 		}		
-		
 	}
 
 	@Override
