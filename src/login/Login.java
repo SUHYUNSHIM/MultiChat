@@ -85,12 +85,20 @@ public class Login extends JFrame {
 				memberDao.insertMember(new Member(txtNickName.getText(), txtRegion.getText(), txtBirthDay.getText()));
 				 //Member member =  memberDao.getMemberByRegion("동작구");
 				//System.out.println("해당 구에 거주하는 유저의 닉네임은 : " +member.getNickName());
+				Member member = memberDao.getMemberByRegion("동작구"); //나중에 스캐너든, inputdialog 든 값을 입력받아서 여기에 넣을 것이다.
+				System.out.println("해당 구에 거주하는 유저의 닉네임은 "+member.getNickName());
 			}
 		});
 		btnSave.setBounds(72, 349, 105, 27);
 		contentPane.add(btnSave);
 		
+		///------------------------------------------------------------//
 		JButton btnChatStart = new JButton("채팅 시작하기");
+		btnChatStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//ip와 port를 입력하는 창으로 넘어간다. 
+			}
+		});
 		btnChatStart.setBounds(191, 349, 141, 27);
 		contentPane.add(btnChatStart);
 	}

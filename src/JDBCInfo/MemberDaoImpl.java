@@ -24,7 +24,7 @@ public class MemberDaoImpl implements MemberDao{
 			ps.setString(1, region);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
-				member = new Member(rs.getString("nickname"), region, rs.getString("birthday"));
+				member = new Member(rs.getString("nickname")); //생성자 여럿 만들어야... 닉네임 컬럼만 출력할 것이기 때문.
 			}
 			rs.close();
 			ps.close();
@@ -53,7 +53,7 @@ public class MemberDaoImpl implements MemberDao{
 			ps.setString(1,year+"%");
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
-				member = new Member(rs.getString("nickname"), rs.getString("region"), birthday);
+				member = new Member(rs.getString("nickname"));
 			}
 			rs.close();
 			ps.close();
@@ -82,7 +82,7 @@ public class MemberDaoImpl implements MemberDao{
 			ps.setString(1, month);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
-				member = new Member(rs.getString("nickname"),rs.getString("region"), birthday);
+				member = new Member(rs.getString("nickname"));
 			}
 			rs.close();
 			ps.close();
@@ -142,8 +142,7 @@ public class MemberDaoImpl implements MemberDao{
 			pst.setString(2, rg);
 			pst.setString(3, bd);
 			
-			pst.executeUpdate();
-			//"insert into employee values ("+ employee.getId() + ",'" + employee.getName() + "')"
+			pst.executeUpdate();			
 			pst.close();
 		}catch (SQLException e) {
 			throw new RuntimeException(e);

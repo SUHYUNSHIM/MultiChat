@@ -10,6 +10,10 @@ public class Member {
 		setRegion(region);
 		setBirthday(birthday);
 	}
+	public Member(String nickname) {
+		setNickName(nickname);
+	}
+	
 
 	public String getNickName() {
 		return nickname;
