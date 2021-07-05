@@ -15,6 +15,7 @@ import chatSC.ServerClass;
 import chatting.FState;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -98,6 +99,8 @@ public class Login extends JFrame {
 				Member member = memberDao.getMemberByRegion("동작구"); //나중에 스캐너든, inputdialog 든 값을 입력받아서 여기에 넣을 것이다.
 				//System.out.println("해당 구에 거주하는 유저의 닉네임은 "+member.getNickName());
 				System.out.println("가입이 완료되었습니다.");
+				
+				 JOptionPane.showMessageDialog(null, "가입이 완료되었습니다\n","Login", JOptionPane.INFORMATION_MESSAGE);
 				
 			}
 		});

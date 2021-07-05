@@ -29,9 +29,7 @@ public class ClientGUI extends JFrame implements Runnable, ActionListener{
 	//console 모드에서 넘어오는 3개 인자를 받아 저장할 준비 필드
 	DataOutputStream outputStream;
 	DataInputStream inputStream;
-	String nickname;
-
-	
+	String nickname;	
 	
 	//그래픽디자인 컴포넌트를 준비
 
@@ -43,13 +41,15 @@ public class ClientGUI extends JFrame implements Runnable, ActionListener{
 	
 	Toolkit tk1 = Toolkit.getDefaultToolkit();
 	JMenuBar menuBar = new JMenuBar();
-	JMenu menu1 = new JMenu("상태창");
+	JMenu menu1 = new JMenu("Menu"); ////////상태창이라는 말 지움.---//
 	JMenuItem item1 = new JMenuItem("온라인");
 	JMenuItem item2 = new JMenuItem("종료");
+			
 	
-	
-	public ClientGUI(DataOutputStream outputStream,
-					DataInputStream inputStream, String nickname) {
+	public ClientGUI(DataOutputStream outputStream, DataInputStream inputStream, String nickname) {
+		
+		setTitle(nickname+"의 채팅창"); /////////누구의 채팅방인지 구분.----//
+		
 		this.outputStream = outputStream;
 		this.inputStream = inputStream;
 		this.nickname = nickname;
@@ -112,7 +112,7 @@ public class ClientGUI extends JFrame implements Runnable, ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
+			
 			String s = arg0.getActionCommand();
 			if(s == "온라인") {
 				new FState(null).setVisible(true);
