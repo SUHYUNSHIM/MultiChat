@@ -35,6 +35,7 @@ public class Login2 extends JFrame {
 		});
 	}
 
+
 	public Login2(String nickname) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -69,11 +70,15 @@ public class Login2 extends JFrame {
 				String p = textField.getText();
 				String i = textField_1.getText();
 				System.out.println(p +"\t"+ i+"\t"+nickname);
+				
+				//포트, ip 주소 입력 창은 닫혀야 한다.
+				dispose();
+				setVisible(false); 
 				new Client(p, i, nickname);
 			}
 		});
 
-		btnNewButton.setBounds(177, 198, 97, 23);
+		btnNewButton.setBounds(177, 204, 97, 23);
 		contentPane.add(btnNewButton);
 	}
 }

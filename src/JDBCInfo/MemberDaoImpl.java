@@ -103,26 +103,29 @@ public class MemberDaoImpl implements MemberDao{
 	public void createMember() {
 		Connection conn = null;
 		ResultSet rs1;
+		
 		try {
 			conn = DriverManager.getConnection(DB_URL,"hr","hr");
 			Statement stmt = conn.createStatement();
-			//stmt.executeUpdate("drop table member");
-			
-			String checkSql = "select count(*) from all_tables where table_name = 'member'";			
+			stmt = conn.createStatement();
+			String checkSql = "select count(*) from all_tables where table_name = 'MEMBER'";	
+			//select count(*) from all_tables where table_name = '테이블 명';	
 			rs1 = stmt.executeQuery(checkSql);
-			if(!rs1.next()) {
+			if(rs1.next()) {
+				System.out.println("member 테이블을 생성합니다.");
 				String sql = "create table member (nickname varchar(30), region varchar(30), birthday char(8))"; 
 				//4글자 이상의 지역구 입력시 오류가 나는데, 이는 처음에 테이블 생성지 글자 제한을 작게 두었기 때문.
 				//alter table member modify(nickname varchar(30));
 				//alter table member modify(region varchar(30));
 				//위의 두 명령어로 수동으로 바꿔주어야 함.
 				stmt.executeUpdate(sql);
-				stmt.close();
-			}			
-			//닉네임, 지역, 생년월일을 컬럼으로 하는 member 테이블을 만든다.
+				stmt.close();				
+		}		
 			stmt.close();
-		}catch(SQLException e) {
-			throw new RuntimeException(e);
+		} catch (SQLException e1) {			
+			//e1.printStackTrace();
+		//stmt.executeUpdate("drop table member");		
+		//닉네임, 지역, 생년월일을 컬럼으로 하는 member 테이블을 만든다.		
 		}finally {
 			if(conn!=null) {
 				try {
