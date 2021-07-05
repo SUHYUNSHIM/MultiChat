@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 
 public class MemberDaoImpl implements MemberDao{
 	static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
@@ -114,10 +116,7 @@ public class MemberDaoImpl implements MemberDao{
 			if(rs1.next()) {
 				System.out.println("member 테이블을 생성합니다.");
 				String sql = "create table member (nickname varchar(30), region varchar(30), birthday char(8))"; 
-				//4글자 이상의 지역구 입력시 오류가 나는데, 이는 처음에 테이블 생성지 글자 제한을 작게 두었기 때문.
-				//alter table member modify(nickname varchar(30));
-				//alter table member modify(region varchar(30));
-				//위의 두 명령어로 수동으로 바꿔주어야 함.
+				
 				stmt.executeUpdate(sql);
 				stmt.close();				
 		}		
@@ -169,6 +168,40 @@ public class MemberDaoImpl implements MemberDao{
 				}
 			}
 		}		
-	}	
+	}
+
+	@Override
+	public boolean getMemberByNickName(String nickname) {
+		Connection conn = null;
+		ResultSet rs;
+		try {
+			conn=DriverManager.getConnection( DB_URL,"hr","hr");
+			//Statement stmt = conn.createStatement();
+			String sql = "select * from member where nickname = ?";
+						
+			PreparedStatement pst = conn.prepareStatement(sql);			
+			pst.setString(1, nickname); //nickname이 이미 있는지 검사한다.
+			
+			rs = pst.executeQuery();
+			if(rs.next()) { //검색된 데이터가 존재할 경우-- 1개. 				
+				return false;
+			}			
+			conn.close();
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			if(conn !=null) {
+				try {
+					conn.close();
+				}catch (SQLException e) {
+					
+				}
+			}
+		}
+		return true;
+					
+	}
+	
+	
 
 }

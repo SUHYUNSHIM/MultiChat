@@ -3,8 +3,9 @@ drop table member;
 
 create table member (nickname varchar(30), region varchar(30), birthday char(8));
 
+select * from member where nickname = 'Äá°¡·ç';
 
-select count(*) from all_tables where table_name = 'member';
+select count(*) from all_tables where table_name = 'MEMBER';
 
 update member
 set birthday = '20000423'

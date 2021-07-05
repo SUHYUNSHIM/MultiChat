@@ -44,6 +44,7 @@ public class ClientGUI extends JFrame implements Runnable, ActionListener{
 	JMenu menu1 = new JMenu("Menu"); ////////상태창이라는 말 지움.---//
 	JMenuItem item1 = new JMenuItem("온라인");
 	JMenuItem item2 = new JMenuItem("종료");
+	JMenuItem item3 = new JMenuItem("멤버 조회");
 			
 	
 	public ClientGUI(DataOutputStream outputStream, DataInputStream inputStream, String nickname) {
@@ -86,10 +87,12 @@ public class ClientGUI extends JFrame implements Runnable, ActionListener{
 		
 		menu1.add(item1);
 		menu1.add(item2);
+		menu1.add(item3);
 		setVisible(true);
 		
 		item1.addActionListener(new MenuActionListener());
 		item2.addActionListener(new MenuActionListener());
+		item3.addActionListener(new MenuActionListener());		
 		
 		//창문 닫기
 		addWindowListener(new WindowAdapter() {
@@ -121,8 +124,11 @@ public class ClientGUI extends JFrame implements Runnable, ActionListener{
 				dispose();
 				setVisible(false);
 			}
-		}
-		
+			else if(s== "멤버 조회") {
+				
+			}
+			
+		}		
 	}
 	
 	@Override
@@ -142,7 +148,7 @@ public class ClientGUI extends JFrame implements Runnable, ActionListener{
 	@Override
 	public void run() {//for 받는 thread
 		try {
-		while(true) {
+		while(true){
 			String strServer1 = inputStream.readUTF(); //서버로 부터
 			
 			if(strServer1 == null) {

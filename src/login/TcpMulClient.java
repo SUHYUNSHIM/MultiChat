@@ -35,13 +35,11 @@ class Client {
 			e.printStackTrace();
 		}
 	}	
-	
 }
 
 public class TcpMulClient {
 
 	public static void main(String[] args) {
-
 
 	}
 

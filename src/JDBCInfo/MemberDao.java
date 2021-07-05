@@ -1,10 +1,10 @@
 package JDBCInfo;
 
 public interface MemberDao {
-	//Member getMemberByNickName(String nickname); 닉네임으로 정보를 찾는 일은 일단 없을 것 같다.
-	Member getMemberByRegion(String region);
-	Member getMemberByYear(String birthday);
-	Member getMemberByMonth(String birthday);
+	boolean getMemberByNickName(String nickname); //닉네임 중복을 검사
+	Member getMemberByRegion(String region); //같은 지역구에 사는 멤버 검색
+	Member getMemberByYear(String birthday); //같은 나이의 멤버 검색
+	Member getMemberByMonth(String birthday); //요번 달에 생일인 멤버를 검색.
 	
 	void createMember();
 	void insertMember(Member member);
