@@ -111,7 +111,11 @@ public class MemberDaoImpl implements MemberDao{
 			String checkSql = "select count(*) from all_tables where table_name = 'member'";			
 			rs1 = stmt.executeQuery(checkSql);
 			if(!rs1.next()) {
-				String sql = "create table member (nickname varchar(15), region varchar(10), birthday char(8))";
+				String sql = "create table member (nickname varchar(30), region varchar(30), birthday char(8))"; 
+				//4글자 이상의 지역구 입력시 오류가 나는데, 이는 처음에 테이블 생성지 글자 제한을 작게 두었기 때문.
+				//alter table member modify(nickname varchar(30));
+				//alter table member modify(region varchar(30));
+				//위의 두 명령어로 수동으로 바꿔주어야 함.
 				stmt.executeUpdate(sql);
 				stmt.close();
 			}			
