@@ -122,11 +122,11 @@ class ServerClass {
 	           } else {
 	              for(int i=0; i<threadList.size(); i++) {
 	                 if(memberList.get(i).equals(from)) {
-	                    String send = "[To]" + to + chat;
+	                    String send = "[From]" + to + chat;
 	                    threadList.get(i).outputStream.writeUTF(send);
 	                    
 	                 } else if(memberList.get(i).equals(to)) {
-	                    String send = "[From]" + from + chat;
+	                    String send = "[To]" + from + chat;
 	                    threadList.get(i).outputStream.writeUTF(send);
 	                 }
 	              }
