@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 
 import chatting.ClientGUI;
 
-class Client1 {
+class Client {
 	String p;
 	String i;
 	String nickname;
@@ -40,7 +40,7 @@ class Client1 {
 
 
 
-	public Client1(String p, String i, String nickname) {
+	public Client(String p, String i, String nickname) {
 		this.p = p;
 		this.i = i;
 		this.nickname = nickname;
@@ -62,12 +62,4 @@ class Client1 {
 			e.printStackTrace();
 		}
 	}	
-}
-
-public class TcpMulClient {
-
-	public static void main(String[] args) {
-
-	}
-
 }

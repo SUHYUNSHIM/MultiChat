@@ -7,7 +7,7 @@ import java.util.*;
 class ServerClass {
 
 	 ArrayList<ThreadServerClass> threadList = new ArrayList<ThreadServerClass>();
-	 ArrayList<TcpMulClient> user_list = new ArrayList<TcpMulClient>();
+	 ArrayList<Client> user_list = new ArrayList<Client>(); //TcpMulClient 
 	
 	Socket socket;
 	DataOutputStream outputStream;
@@ -75,7 +75,6 @@ class ServerClass {
             
          } 
 		else {
-
 			for (int i = 0; i < threadList.size(); i++)
 				threadList.get(i).outputStream.writeUTF(chat);	
 		}
@@ -117,9 +116,8 @@ class ServerClass {
 					if (socket1.equals(threadList.get(i).socket1)) {
 						threadList.remove(i);
 						try {
-							sendChat(nickname + " 님 퇴장) ");
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
+							sendChat(user_list.get(i).getNickname() + " 님 퇴장) ");
+						} catch (IOException e) {							
 							e.printStackTrace();
 						}
 					}
@@ -134,7 +132,7 @@ public class TcpMulServer {//TcpMulServer.java
 	public static void main(String args[]) throws IOException {
 		if(args.length !=1) {
 			
-		System.out.println("사용법은: 서버실행은ㅁ \'java 패키지명.파일명 포트번호/' 형식으로 입력 ");
+		System.out.println("사용법은: 서버실행은 \'java 패키지명.파일명 포트번호/' 형식으로 입력 ");
 		}
 	//	new ServerClass();////////////
 		new ServerClass(Integer.parseInt(args[0]));////////////
