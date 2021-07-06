@@ -1,5 +1,5 @@
 package login;
-
+//ip, port번호를 받는다.
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Login2 extends JFrame {
 
@@ -38,8 +39,9 @@ public class Login2 extends JFrame {
 
 	public Login2(String nickname) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 448, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -55,16 +57,19 @@ public class Login2 extends JFrame {
 		contentPane.add(textField_1);
 		
 		JLabel lblPortNo = new JLabel("Port no");
-		lblPortNo.setFont(new Font("����", Font.PLAIN, 15));
+		lblPortNo.setFont(new Font("나눔스퀘어OTF Bold", Font.PLAIN, 15));
 		lblPortNo.setBounds(91, 86, 57, 27);
 		contentPane.add(lblPortNo);
 		
 		JLabel lblIp = new JLabel("IP");
-		lblIp.setFont(new Font("����", Font.PLAIN, 15));
+		lblIp.setFont(new Font("나눔스퀘어OTF Bold", Font.PLAIN, 15));
 		lblIp.setBounds(91, 134, 57, 27);
 		contentPane.add(lblIp);
 		
 		JButton btnNewButton = new JButton("\uC785\uC7A5\uD558\uAE30");
+		btnNewButton.setBackground(new Color(245, 255, 250));
+		btnNewButton.setFont(new Font("나눔스퀘어OTF", Font.PLAIN, 15));
+		btnNewButton.setBorder(null);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String p = textField.getText();
@@ -74,7 +79,7 @@ public class Login2 extends JFrame {
 				//포트, ip 주소 입력 창은 닫혀야 한다.
 				dispose();
 				setVisible(false); 
-				new Client1(p, i, nickname);
+				new client1(p, i, nickname);
 			}
 		});
 

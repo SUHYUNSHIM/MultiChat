@@ -1,5 +1,5 @@
 package chatting;
-
+//같은 지역구 주민, 동갑인 사람, 이번 달에 생일인 멤버를 조회하는 클래스.
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -19,6 +19,9 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class SearchMember extends JFrame {
 
@@ -37,7 +40,7 @@ public class SearchMember extends JFrame {
 					SearchMember frame = new SearchMember(nickname);
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 		});
@@ -45,26 +48,30 @@ public class SearchMember extends JFrame {
 
 	public SearchMember(String nickname) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 481, 503);
+		setBounds(100, 100, 543, 590);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		txtRegion = new JTextArea(); //같은 지역
-		txtRegion.setBounds(28, 90, 326, 47);
+		txtRegion.setBounds(94, 89, 326, 47);
 		contentPane.add(txtRegion);
 		
 		txtFriend = new JTextArea(); //동갑내기
-		txtFriend.setBounds(28, 215, 326, 47);
+		txtFriend.setBounds(94, 207, 326, 47);
 		contentPane.add(txtFriend);
 		
 		txtBDList = new JTextArea(); //생일자
-		txtBDList.setBounds(28, 338, 326, 47);
+		txtBDList.setBounds(94, 338, 326, 47);
 		contentPane.add(txtBDList);
 			
 		
 		JButton btnRegion = new JButton("동네 주민 찾기");
+		btnRegion.setFont(new Font("나눔스퀘어OTF", Font.BOLD, 15));
+		btnRegion.setBackground(new Color(245, 255, 250));
+		btnRegion.setBorder(null);
 		btnRegion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//데이터베이스 조회
@@ -88,10 +95,13 @@ public class SearchMember extends JFrame {
 				}	*/			
 			}
 		});
-		btnRegion.setBounds(28, 39, 143, 27);
+		btnRegion.setBounds(180, 36, 143, 27);
 		contentPane.add(btnRegion);
 		
 		JButton btnFriend = new JButton("친구 찾기");
+		btnFriend.setFont(new Font("나눔스퀘어OTF", Font.BOLD, 15));
+		btnFriend.setBackground(new Color(245, 255, 250));
+		btnFriend.setBorder (null);
 		btnFriend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//데이터베이스 조회
@@ -106,10 +116,13 @@ public class SearchMember extends JFrame {
 				txtFriend.setText(member.getNickName()+'\n');
 			}
 		});
-		btnFriend.setBounds(28, 176, 143, 27);
+		btnFriend.setBounds(180, 168, 143, 27);
 		contentPane.add(btnFriend);
 		
 		JButton btnBDmember = new JButton("이번달 생일");
+		btnBDmember.setFont(new Font("나눔스퀘어OTF", Font.BOLD, 15));
+		btnBDmember.setBackground(new Color(245, 255, 250));
+		btnBDmember.setBorder (null);
 		btnBDmember.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//오늘날짜 
@@ -143,8 +156,20 @@ public class SearchMember extends JFrame {
 							
 			}
 		});
-		btnBDmember.setBounds(28, 282, 143, 27);
+		btnBDmember.setBounds(180, 287, 143, 27);
 		contentPane.add(btnBDmember);		
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setFont(new Font("나눔스퀘어OTF", Font.PLAIN, 20));
+		textArea.setBackground(new Color(230, 230, 250));
+		textArea.setText("나와 공통점이 있는 채팅 멤버를 찾아서\r\n귓속말 채팅을 해보세요!");
+		textArea.setBounds(151, 436, 326, 53);
+		contentPane.add(textArea);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(SearchMember.class.getResource("/image/whisper.png")));
+		lblNewLabel.setBounds(0, 397, 137, 134);
+		contentPane.add(lblNewLabel);
 		
 	}
 }

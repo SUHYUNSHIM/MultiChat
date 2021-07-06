@@ -1,5 +1,7 @@
 package login;
-
+//로그인 화면이자 시작화면.
+//닉네임, 지역구, 생년월일을 입력 받는다.
+//가입 완료 전 닉네임 중복 검사를 통과해야 한다. 통과하면 주황색-> 초록색으로 panel 색이 바뀐다. 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -26,6 +28,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JDesktopPane;
 import java.awt.Panel;
+import java.awt.Font;
 
 public class Login extends JFrame {
 
@@ -35,8 +38,7 @@ public class Login extends JFrame {
 	private JTextField txtBirthDay;
 	private JLabel lblCheck;
 	public String nickname;
-	ArrayList<String> userlist = new ArrayList<String>();
-	
+	ArrayList<String> userlist = new ArrayList<String>();	
 	
 	//닉네임 getter
 	public String getNickName() {
@@ -59,22 +61,26 @@ public class Login extends JFrame {
 
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 473, 529);
+		setBounds(100, 100, 445, 529);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(230, 230, 250));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNickName = new JLabel("닉네임");
+		lblNickName.setFont(new Font("나눔스퀘어OTF Bold", Font.PLAIN, 15));
 		lblNickName.setBounds(59, 147, 62, 18);
 		contentPane.add(lblNickName);
 
 		
 		JLabel lblRegion = new JLabel("지역구");
+		lblRegion.setFont(new Font("나눔스퀘어OTF Bold", Font.PLAIN, 15));
 		lblRegion.setBounds(59, 192, 62, 18);
 		contentPane.add(lblRegion);
 		
 		JLabel lblAge = new JLabel("생년월일");
+		lblAge.setFont(new Font("나눔스퀘어OTF Bold", Font.PLAIN, 15));
 		lblAge.setBounds(59, 257, 62, 18);
 		contentPane.add(lblAge);
 		
@@ -99,8 +105,9 @@ public class Login extends JFrame {
 		contentPane.add(panel_orange);
 		
 		
-		JLabel lblLoginBanner = new JLabel("★아래의 정보를 입력 후 채팅 시작하자★");
-		lblLoginBanner.setBounds(72, 46, 295, 18);
+		JLabel lblLoginBanner = new JLabel("★Login★");
+		lblLoginBanner.setFont(new Font("나눔스퀘어", Font.BOLD, 25));
+		lblLoginBanner.setBounds(151, 43, 133, 41);
 		contentPane.add(lblLoginBanner);
 				
 		//테이블 생성--> 애초부터 빈테이블을 만들고 시작한다. --> 빈테이블일 경우, 아이디 중복 검사를 진행했을 때 통과하기 위해서 이다. 
@@ -108,6 +115,9 @@ public class Login extends JFrame {
 		memberDao.createMember();
 		
 		JButton btnSave = new JButton("가입"); //데이터베이스에 회원 정보를 넘겨주어야 한다. 
+		btnSave.setBackground(new Color(245, 255, 250));
+		btnSave.setFont(new Font("나눔스퀘어OTF Bold", Font.PLAIN, 15));
+		btnSave.setBorder(null);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//MemberDao memberDao = new MemberDaoImpl(); --> 애초에 만들고 중복검색을 하도록 했다.
@@ -128,11 +138,14 @@ public class Login extends JFrame {
 				}				
 			}
 		});
-		btnSave.setBounds(72, 349, 105, 27);
+		btnSave.setBounds(95, 349, 69, 27);
 		contentPane.add(btnSave);
 		
 		///------------------------------------------------------------//
 		JButton btnChatStart = new JButton("채팅룸 검색하기");
+		btnChatStart.setBackground(new Color(245, 255, 250));
+		btnChatStart.setFont(new Font("나눔스퀘어OTF Bold", Font.PLAIN, 15));
+		btnChatStart.setBorder(null);
 		btnChatStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//ip와 port를 입력하는 창으로 넘어간다. 
@@ -154,7 +167,10 @@ public class Login extends JFrame {
 		contentPane.add(btnChatStart);
 		
 		
-		JButton btnDuplCheck = new JButton("중복 검색");
+		JButton btnDuplCheck = new JButton("중복 검색"); /////닉네임 중복 검사
+		btnDuplCheck.setBackground(new Color(245, 255, 250));
+		btnDuplCheck.setFont(new Font("나눔스퀘어OTF Bold", Font.PLAIN, 15));
+		btnDuplCheck.setBorder(null);
 		btnDuplCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				

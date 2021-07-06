@@ -33,10 +33,11 @@ public class ClientGUI extends JFrame implements Runnable, ActionListener{
 	//console 모드에서 넘어오는 3개 인자를 받아 저장할 준비 필드
 	DataOutputStream outputStream;
 	DataInputStream inputStream;
+	String nickname;
 	
-	Login lg = new Login();
+	/*Login lg = new Login();
 	
-	String nickname = lg.nickname;
+	String nickname = lg.nickname;*/
 	
 	
 	//그래픽디자인 컴포넌트를 준비
@@ -55,9 +56,13 @@ public class ClientGUI extends JFrame implements Runnable, ActionListener{
 	JMenuItem item3 = new JMenuItem("멤버 조회");
 			
 	
-	public ClientGUI(DataOutputStream outputStream, DataInputStream inputStream, String nickname) {
+	public ClientGUI(DataOutputStream outputStream, DataInputStream inputStream, String nickname) {	
+		this.outputStream = outputStream;
+		this.inputStream = inputStream;
+		this.nickname = nickname;
 		
-		setTitle(nickname+"의 채팅창"); /////////누구의 채팅방인지 구분.----//
+		
+		setTitle("★"+nickname+"의 채팅창"+"★"); /////////누구의 채팅방인지 구분.----//
 		
 		this.outputStream = outputStream;
 		this.inputStream = inputStream;
@@ -70,7 +75,7 @@ public class ClientGUI extends JFrame implements Runnable, ActionListener{
 		
 		//chat문자열이 출력되는 곳
 		jtarea1.setBackground(Color.white); 
-		jtarea1.setForeground(Color.blue); //노랑 배경색 위에 파랑색 글씨
+		jtarea1.setForeground(Color.black); //노랑 배경색 위에 파랑색 글씨
 		jtarea1.setFont(new Font("굴림", Font.BOLD, 22));
 		//new Font(글씨체, 스타일, 크기)
 		

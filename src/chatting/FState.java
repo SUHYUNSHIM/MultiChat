@@ -1,5 +1,5 @@
 package chatting;
-
+//접속자 리스트
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.ArrayList;
