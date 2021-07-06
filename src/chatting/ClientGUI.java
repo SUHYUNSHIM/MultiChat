@@ -20,6 +20,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import login.Login;
+import login.Login2;
+
 import javax.swing.JMenuItem;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,7 +33,11 @@ public class ClientGUI extends JFrame implements Runnable, ActionListener{
 	//console 모드에서 넘어오는 3개 인자를 받아 저장할 준비 필드
 	DataOutputStream outputStream;
 	DataInputStream inputStream;
-	String nickname;	
+	
+	Login lg = new Login();
+	
+	String nickname = lg.nickname;
+	
 	
 	//그래픽디자인 컴포넌트를 준비
 
@@ -92,7 +100,7 @@ public class ClientGUI extends JFrame implements Runnable, ActionListener{
 		
 		item1.addActionListener(new MenuActionListener());
 		item2.addActionListener(new MenuActionListener());
-		item3.addActionListener(new MenuActionListener());		
+		item3.addActionListener(new MenuActionListener());			
 		
 		//창문 닫기
 		addWindowListener(new WindowAdapter() {
@@ -125,7 +133,8 @@ public class ClientGUI extends JFrame implements Runnable, ActionListener{
 				setVisible(false);
 			}
 			else if(s== "멤버 조회") {
-				
+				new SearchMember(nickname).setVisible(true);
+				System.out.println("닉네임--- "+nickname);
 			}
 			
 		}		

@@ -13,7 +13,7 @@ class Client1 {
 	String i;
 	String nickname;
 	
-	//getter, setter 추가
+	/*//getter, setter 추가
 	public String getP() {
 		return p;
 	}
@@ -36,8 +36,7 @@ class Client1 {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
-	}
-
+	}*/
 
 
 	public Client1(String p, String i, String nickname) {
@@ -49,6 +48,7 @@ class Client1 {
 			DataOutputStream outputStream = new DataOutputStream(s1.getOutputStream());
 			DataInputStream inputStream = new DataInputStream(s1.getInputStream());
 			
+			outputStream.writeUTF(nickname);
 			new ClientGUI(outputStream, inputStream, nickname){
 				public void closeWork() throws IOException {
 					

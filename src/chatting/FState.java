@@ -10,14 +10,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import login.List;
+import login.Login;
 
 import javax.swing.JTextArea;
 
 public class FState extends JFrame {
 
 	private JPanel contentPane;
-	static ArrayList<String> userlist = new ArrayList<String>();
+	ArrayList<String> userlist = new ArrayList<String>();
 
+	Login lg = new Login();
+	String nickname = lg.getNickName();
+	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -43,13 +47,14 @@ public class FState extends JFrame {
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(12, 10, 260, 241);
 		contentPane.add(textArea);
-		String[] array = new String[userlist.size()];
+		/*String[] array = new String[userlist.size()];
 		int size = 0;
 		for(String list : userlist) {
 			array[size++]=list;
 		}
-		textArea.setText(Arrays.toString(array));
+		textArea.setText(Arrays.toString(array));*/
 		
+		textArea.setText(nickname);
 		
 
 		

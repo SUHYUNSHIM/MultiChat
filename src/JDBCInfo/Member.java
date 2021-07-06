@@ -5,16 +5,15 @@ public class Member {
 	private String region;
 	private String birthday;
 	
-	public Member(String nickname, String region, String birthday) {
+	public Member(String nickname, String region, String birthday) { //생성자
 		setNickName(nickname);
 		setRegion(region);
 		setBirthday(birthday);
 	}
-	public Member(String nickname) {
+	public Member(String nickname) { //생성자 /////////
 		setNickName(nickname);
 	}
 	
-
 	public String getNickName() {
 		return nickname;
 	}

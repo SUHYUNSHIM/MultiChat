@@ -74,7 +74,7 @@ public class Login2 extends JFrame {
 				//포트, ip 주소 입력 창은 닫혀야 한다.
 				dispose();
 				setVisible(false); 
-				new Client(p, i, nickname);
+				new Client1(p, i, nickname);
 			}
 		});
 

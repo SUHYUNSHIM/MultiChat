@@ -13,6 +13,7 @@ import JDBCInfo.MemberDao;
 import JDBCInfo.MemberDaoImpl;
 import chatSC.ServerClass;
 import chatting.FState;
+import chatting.SearchMember;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -33,17 +34,22 @@ public class Login extends JFrame {
 	private JTextField txtRegion;
 	private JTextField txtBirthDay;
 	private JLabel lblCheck;
-	String nickname;
+	public String nickname;
 	ArrayList<String> userlist = new ArrayList<String>();
 	
 	
+	//닉네임 getter
+	public String getNickName() {
+		return nickname;
+	}	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Login frame = new Login();
-					frame.setVisible(true);
+					frame.setVisible(true);					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -96,13 +102,17 @@ public class Login extends JFrame {
 		JLabel lblLoginBanner = new JLabel("★아래의 정보를 입력 후 채팅 시작하자★");
 		lblLoginBanner.setBounds(72, 46, 295, 18);
 		contentPane.add(lblLoginBanner);
+				
+		//테이블 생성--> 애초부터 빈테이블을 만들고 시작한다. --> 빈테이블일 경우, 아이디 중복 검사를 진행했을 때 통과하기 위해서 이다. 
+		MemberDao memberDao = new MemberDaoImpl();					
+		memberDao.createMember();
 		
 		JButton btnSave = new JButton("가입"); //데이터베이스에 회원 정보를 넘겨주어야 한다. 
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MemberDao memberDao = new MemberDaoImpl();
+				//MemberDao memberDao = new MemberDaoImpl(); --> 애초에 만들고 중복검색을 하도록 했다.
 				//테이블 생성
-				memberDao.createMember();
+				//memberDao.createMember();
 				if(txtNickName.getText() == null || txtRegion.getText() == null ||  txtBirthDay.getText() == null) {
 					JOptionPane.showMessageDialog(null, "값을 모두 입력해주세요\n","공백 경고 메시지", JOptionPane.WARNING_MESSAGE);	
 				}
@@ -116,7 +126,6 @@ public class Login extends JFrame {
 					//System.out.println("해당 구에 거주하는 유저의 닉네임은 "+member.getNickName()); -->테스트 용도	
 					JOptionPane.showMessageDialog(null, "가입완료\n","Login", JOptionPane.INFORMATION_MESSAGE);
 				}				
-				
 			}
 		});
 		btnSave.setBounds(72, 349, 105, 27);
@@ -136,6 +145,7 @@ public class Login extends JFrame {
 				dispose();
 				setVisible(false); 
 				new Login2(nickname).setVisible(true);
+				new SearchMember(nickname);
 				System.out.println("채팅 포트, ip 주소 입력 화면으로 전환 성공.");			
 			
 			}
@@ -160,17 +170,14 @@ public class Login extends JFrame {
 					}
 					else if (duplCheck == false) {
 						JOptionPane.showMessageDialog(null, "이미 사용 중인 닉네임입니다\n","사용할 수 없는 닉네임 경고", JOptionPane.WARNING_MESSAGE);	
-						panel_orange.setBackground(Color.ORANGE); 
-						
+						panel_orange.setBackground(Color.ORANGE); 						
 					}
-				}
-				
+				}			
 				
 			}
 		});
 		btnDuplCheck.setBounds(281, 143, 93, 27);
-		contentPane.add(btnDuplCheck);
-		
+		contentPane.add(btnDuplCheck);	
 		
 	}
 }
