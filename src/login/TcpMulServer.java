@@ -103,7 +103,7 @@ class ServerClass {
 	           
 	           String[] splitChat2 = splitChat[1].split(" ");
 	           String from = splitChat2[0];
-	           String to = splitChat[0].split("-->")[0];
+	           String to = splitChat[0].split("-->")[0].trim();
 	           
 	           for(int i=1; i<splitChat2.length; i++) chat += splitChat2[i] + " ";
 	           

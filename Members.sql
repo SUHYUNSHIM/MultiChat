@@ -1,7 +1,16 @@
 delete from member where nickname is null;
 create table member (nickname varchar(30), region varchar(30), birthday char(8));
 
+
+
 select * from member;
+
+
+
+
+
+
+
 
 
 drop table member;
